@@ -4,6 +4,7 @@ global using TempAPI.Models;
 global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel.DataAnnotations.Schema;
 using TempAPI.DBContext;
+using TempAPI.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<MeasurementService>();
 builder.Services.AddDbContext<TempContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SIMPLY_CONECTION")); // Use the correct connection string name
