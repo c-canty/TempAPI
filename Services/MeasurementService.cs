@@ -46,6 +46,7 @@ namespace TempAPI.Services
             {
                 throw new Exception("Measurement not found");
             }
+            _context.Measurements.Remove(measurement);
             _measurements.Remove(measurement);
             _context.SaveChanges();
         }

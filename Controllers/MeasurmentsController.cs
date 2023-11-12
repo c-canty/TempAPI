@@ -42,9 +42,16 @@ namespace TempAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Measurment measurement)
         {
-            return Ok(_measurementService.Create(measurement));
+            try
+            {
+                Measurment createdMeasurement = _measurementService.Create(measurement);
+                return CreatedAtAction(nameof(Get), new { id = createdMeasurement.Id }, createdMeasurement);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
-
 
         // DELETE api/<Measurments>/5
         [HttpDelete("{id}")]
