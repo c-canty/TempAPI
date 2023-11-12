@@ -42,10 +42,7 @@ namespace TempAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Measurment measurment)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            
             return CreatedAtAction("Get", _measurementService.Create(measurment));
         }
  
