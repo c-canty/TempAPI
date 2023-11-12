@@ -42,8 +42,7 @@ namespace TempAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Measurment measurement)
         {
-            var createdMeasurement = _measurementService.Create(measurement);
-            return CreatedAtAction(nameof(Get), new { id = createdMeasurement.Id }, createdMeasurement);
+            return Ok(_measurementService.Create(measurement));
         }
 
 

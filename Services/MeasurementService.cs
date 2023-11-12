@@ -16,7 +16,7 @@ namespace TempAPI.Services
         public List<Measurment> Get()
         { 
             List<Measurment> measurementsCopy = new List<Measurment>();
-            measurementsCopy = _measurements;
+            measurementsCopy = _measurements = _context.Measurements.ToList(); 
 
             return measurementsCopy;
         }
@@ -33,8 +33,9 @@ namespace TempAPI.Services
 
         public Measurment Create(Measurment measurement)
         {
-            _measurements.Add(measurement);
-            _context.SaveChanges();
+            _context.Measurements.Add(measurement);  // Add to the database
+            _context.SaveChanges();  // Save changes to the database
+            _measurements = _context.Measurements.ToList();  // Update the in-memory list
             return measurement;
         }
 
