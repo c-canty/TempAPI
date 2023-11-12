@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TempAPI.DBContext;
+using TempAPI.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +10,18 @@ namespace TempAPI.Controllers
     [ApiController]
     public class MeasurmentsController : ControllerBase
     {
+        private MeasurementService _measurementService;
+
+        public MeasurmentsController(TempContext tempContext)
+        {
+            _measurementService = new MeasurementService(tempContext);
+        }
+
         // GET: api/<Measurments>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<List<Measurment>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _measurementService.Get();
         }
 
         // GET api/<Measurments>/5
