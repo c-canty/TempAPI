@@ -13,63 +13,11 @@ namespace TempAPI.Services
             _measurements = _context.Measurements.ToList();
         }
 
-        public IEnumerable<List<Measurment>> Get()
+        public List<Measurment> Get()
         { 
             List<Measurment> measurementsCopy = new List<Measurment>();
             measurementsCopy = _measurements;
 
-            //if (id != null)
-            //{
-            //    measurementsCopy = measurementsCopy.Where(m => m.Id == id).ToList();
-            //}
-
-            //if (minTemp != null)
-            //{
-            //    measurementsCopy = measurementsCopy.Where(m => m.Temperature >= minTemp).ToList();
-            //}
-            //if (maxTemp != null)
-            //{
-            //    measurementsCopy = measurementsCopy.Where(m => m.Temperature <= maxTemp).ToList();
-            //}
-
-            //if (minHumidity != null)
-            //{
-            //    measurementsCopy = measurementsCopy.Where(m => m.Humidity >= minHumidity).ToList();
-            //}
-            //if (maxHumidity != null)
-            //{
-            //    measurementsCopy = measurementsCopy.Where(m => m.Humidity <= maxHumidity).ToList();
-            //}
-
-            //if (minPressure != null)
-            //{
-            //    measurementsCopy = measurementsCopy.Where(m => m.Pressure >= minPressure).ToList();
-            //}
-            //if (maxPressure != null)
-            //{
-            //    measurementsCopy = measurementsCopy.Where(m => m.Pressure <= maxPressure).ToList();
-            //}
-            
-            //if (orderBy != null)
-            //{
-            //    if (orderBy == "temperature")
-            //    {
-            //        measurementsCopy = measurementsCopy.OrderBy(m => m.Temperature).ToList();
-            //    }
-            //    else if (orderBy == "humidity")
-            //    {
-            //        measurementsCopy = measurementsCopy.OrderBy(m => m.Humidity).ToList();
-            //    }
-            //    else if (orderBy == "pressure")
-            //    {
-            //        measurementsCopy = measurementsCopy.OrderBy(m => m.Pressure).ToList();
-            //    }
-            //    else if (orderBy == "time")
-            //    {
-            //        measurementsCopy = measurementsCopy.OrderBy(m => m.Time).ToList();
-            //    }
-            //}
-           
             return measurementsCopy;
         }
 

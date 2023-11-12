@@ -19,34 +19,49 @@ namespace TempAPI.Controllers
 
         // GET: api/<Measurments>
         [HttpGet]
-        public IEnumerable<List<Measurment>> Get()
+        public IActionResult Get()
         {
-            return _measurementService.Get();
+            return Ok(_measurementService.Get());
         }
 
         // GET api/<Measurments>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            try
+            {
+                return Ok(_measurementService.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }           
         }
 
         // POST api/<Measurments>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Measurment measurment)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return CreatedAtAction("Get", _measurementService.Create(measurment));
         }
-
-        // PUT api/<Measurments>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
+ 
         // DELETE api/<Measurments>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            try
+            {
+                _measurementService.Delete(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
     }
 }
