@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TempAPI.DBContext;
 
@@ -10,9 +11,11 @@ using TempAPI.DBContext;
 namespace TempAPI.Migrations
 {
     [DbContext(typeof(TempContext))]
-    partial class TempContextModelSnapshot : ModelSnapshot
+    [Migration("20231112170949_idk")]
+    partial class idk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

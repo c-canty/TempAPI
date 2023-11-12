@@ -9,17 +9,15 @@ namespace TempAPI.Models
         public int Id { get; set; }
 
         [Required]
-        public double Pressure { get; set; }
-
-        [Required]
         public double Temperature { get; set; }
         
         [Required]
         public double Humidity { get; set; }
        
-        
+        [Required]
+        public double Pressure { get; set; }
         
         [Required]
-        public DateTime Time { get; set; }
+        public string? Time { get; set; }
     }
 }
