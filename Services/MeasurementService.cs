@@ -15,10 +15,7 @@ namespace TempAPI.Services
 
         public List<Measurment> Get()
         { 
-            List<Measurment> measurementsCopy = new List<Measurment>();
-            measurementsCopy = _measurements;
-
-            return measurementsCopy;
+            return _context.Measurements.ToList();
         }
 
         public Measurment GetById(int id)
