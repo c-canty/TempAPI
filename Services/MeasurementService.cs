@@ -51,7 +51,7 @@ namespace TempAPI.Services
             _context.SaveChanges();
         }
 
-        public void twentyFourHours()
+        public void TwentyFourHours()
         {
             DateTime now = DateTime.Now;
             DateTime twentyFourHoursAgo = now.AddHours(-24);
