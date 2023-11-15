@@ -12,11 +12,12 @@ namespace TempAPI.Services
         {             
             _context = tempContext;
             _measurements = _context.Measurements.ToList();
-            RemoveOld();
+            
         }
 
         public List<Measurment> Get()
-        { 
+        {
+            RemoveOld();
             List<Measurment> measurementsCopy = new List<Measurment>();
             measurementsCopy = _measurements = _context.Measurements.ToList(); 
 
