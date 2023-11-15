@@ -21,6 +21,8 @@ namespace TempAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            _measurementService.twentyFourHours();
+
             return Ok(_measurementService.Get());
         }
 

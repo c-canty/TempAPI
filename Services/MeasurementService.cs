@@ -51,6 +51,23 @@ namespace TempAPI.Services
             _context.SaveChanges();
         }
 
+        public void twentyFourHours()
+        {
+            DateTime now = DateTime.Now;
+            DateTime twentyFourHoursAgo = now.AddHours(-24);
+            List<Measurment> measurementsCopy = new List<Measurment>();
+            measurementsCopy = _measurements = _context.Measurements.ToList();
+            foreach (Measurment measurement in measurementsCopy)
+            {
+                if (DateTime.Parse(measurement.Time) < twentyFourHoursAgo)
+                {
+                    _context.Measurements.Remove(measurement);
+                    _measurements.Remove(measurement);
+                }
+            }
+            _context.SaveChanges();
+        }   
+
 
     }
 }
