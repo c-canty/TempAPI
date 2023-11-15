@@ -1,4 +1,5 @@
-﻿using TempAPI.DBContext;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using TempAPI.DBContext;
 
 namespace TempAPI.Services
 {
@@ -11,6 +12,7 @@ namespace TempAPI.Services
         {             
             _context = tempContext;
             _measurements = _context.Measurements.ToList();
+            RemoveOld();
         }
 
         public List<Measurment> Get()
@@ -21,23 +23,6 @@ namespace TempAPI.Services
             return measurementsCopy;
         }
 
-        public List<Measurment> GetFromLast24Hours()
-        {
-            DateTime now = DateTime.Now;
-            DateTime twentyFourHoursAgo = now.AddHours(-24);
-            List<Measurment> measurementsCopy = new List<Measurment>();
-            measurementsCopy = _measurements = _context.Measurements.ToList();
-            foreach (Measurment measurement in measurementsCopy)
-            {
-                if (DateTime.Parse(measurement.Time) < twentyFourHoursAgo)
-                {
-                    _context.Measurements.Remove(measurement);
-                    _measurements.Remove(measurement);
-                }
-            }
-            _context.SaveChanges();
-            return measurementsCopy;
-        }
 
         public Measurment GetById(int id)
         {
@@ -69,6 +54,18 @@ namespace TempAPI.Services
             _context.SaveChanges();
         }
 
+        public void RemoveOld()
+        {
+            DateTime now = DateTime.Now;
+            DateTime twentyFourHoursAgo = now.AddHours(-24);
+            List<Measurment> measurementsToRemove = _measurements.FindAll(m => DateTime.Parse(m.Time) < twentyFourHoursAgo);
+            foreach (Measurment measurement in measurementsToRemove)
+            {
+                _context.Measurements.Remove(measurement);
+                _measurements.Remove(measurement);
+            }
+            _context.SaveChanges();
+        }
        
 
     }
