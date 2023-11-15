@@ -23,7 +23,7 @@ namespace TempAPI.Controllers
         {
             //_measurementService.TwentyFourHours();
 
-            return Ok(_measurementService.Get());
+            return Ok(_measurementService.GetFromLast24Hours());
         }
 
         // GET api/<Measurments>/5
